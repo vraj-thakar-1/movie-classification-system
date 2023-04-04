@@ -36,6 +36,7 @@ def menu():
 - 'l'  to see your movie
 - 'f' to find a movie
 - 'q' to quit 
+- "s" to store
 : """)
     while user_input != "q":
         if user_input == "a":
@@ -47,6 +48,9 @@ def menu():
         elif user_input == "f":
             print("find movies")
             find_movie()
+        elif user_input == "s":
+            print("store movies")
+            store_movie(movies)
         else:
             print("Invalid input")
         user_input = input(""" enter :
@@ -95,7 +99,11 @@ def find_by_atttributes(expected, founder):
         if expected==founder(i):
             found.append(i)
     return found
-
-
+def store_movie(mov):
+    with open("./movies.txt","w") as f:
+        for i in mov:
+            f.write(f""" movie name: {i['name']} \n movie director: {i['director']}\n Year of Release : {i['year']}\n ---------------------------------\n""")
+        
+    
 menu()
 print(movies)
